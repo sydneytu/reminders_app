@@ -23,6 +23,14 @@ class _HomePageState extends State<HomePage> {
       appBar: ScrollAppBar(
         controller: controller,
         backgroundColor: Colors.transparent,
+        actions: [
+          IconButton(
+              icon: Icon(
+                Icons.person_rounded,
+                color: Colors.orange,
+              ),
+              onPressed: () {})
+        ],
         elevation: 0,
       ),
       body: Column(
