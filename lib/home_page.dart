@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:reminders/reminder_card.dart';
 import 'package:reminders/reminders.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
 import 'bottom_navbar.dart';
+
+double _crossAxisSpacing = 8, _mainAxisSpacing = 12, _aspectRatio = 2;
+int _crossAxisCount = 2;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -17,55 +21,43 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final controller = ScrollController();
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    var width = (screenWidth - ((_crossAxisCount - 1) * _crossAxisSpacing)) /
+        _crossAxisCount;
+    var height = width / _aspectRatio;
+
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: ScrollAppBar(
-        controller: controller,
-        backgroundColor: Colors.transparent,
-        actions: [
-          IconButton(
-              icon: Icon(
-                Icons.person_rounded,
-                color: Colors.orange,
-              ),
-              onPressed: () {})
-        ],
-        elevation: 0,
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 12, bottom: 0, top: 10),
-            child: Text(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            title: Text(
               'Reminders',
               style: TextStyle(
+                color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 35,
               ),
             ),
+            floating: true,
+            backgroundColor: Colors.white,
+            expandedHeight: 75,
           ),
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.all(12),
-              child: StaggeredGridView.countBuilder(
-                  controller: controller,
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 12,
-                  itemCount: reminders.getReminders().length,
-                  itemBuilder: (context, index) {
-                    return ReminderCard(
-                      reminders: reminders,
-                      index: index,
-                    );
-                  },
-                  staggeredTileBuilder: (index) {
-                    return StaggeredTile.count(1, index.isEven ? 0.8 : 1.2);
-                  }),
+          SliverGrid(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 5,
+              mainAxisSpacing: 8,
             ),
-          ),
+            delegate:
+                SliverChildBuilderDelegate((BuildContext context, int index) {
+              return ReminderCard(
+                reminders: reminders,
+                index: index,
+              );
+            }, childCount: reminders.getReminders().length),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -84,3 +76,37 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+// Column(
+// crossAxisAlignment: CrossAxisAlignment.start,
+// children: [
+// Padding(
+// // padding: const EdgeInsets.only(left: 12, bottom: 0, top: 10),
+// child: Text(
+// 'Reminders',
+// style: TextStyle(
+// fontWeight: FontWeight.bold,
+// fontSize: 35,
+// ),
+// ),
+// ),
+// Expanded(
+// child: Container(
+// margin: EdgeInsets.all(12),
+// child: StaggeredGridView.countBuilder(
+// controller: controller,
+
+// itemCount: reminders.getReminders().length,
+// itemBuilder: (context, index) {
+// return ReminderCard(
+// reminders: reminders,
+// index: index,
+// );
+// },
+// staggeredTileBuilder: (index) {
+// return StaggeredTile.count(1, index.isEven ? 0.8 : 1.2);
+// }),
+// ),
+// ),
+// ],
+// ),
