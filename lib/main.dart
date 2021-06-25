@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:reminders/bottom_nav.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:reminders/reminder_card.dart';
+import 'package:reminders/reminders.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,12 +29,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Reminders reminders = Reminders();
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: Container(
+        margin: EdgeInsets.all(12),
+        child: StaggeredGridView.countBuilder(
+            crossAxisCount: 2,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 12,
+            itemCount: reminders.getReminders().length,
+            itemBuilder: (context, index) {
+              return ReminderCard(
+                reminders: reminders,
+                index: index,
+              );
+            },
+            staggeredTileBuilder: (index) {
+              return StaggeredTile.count(1, index.isEven ? 0.8 : 1.2);
+            }),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         // elevation: 2.0,
