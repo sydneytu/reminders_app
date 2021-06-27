@@ -42,22 +42,51 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.white,
             expandedHeight: 75,
           ),
-          SliverGrid(
-            // TODO: fix spacing
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: width / height,
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 8,
+          if (reminders.getReminders().length == 0)
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset('images/no_reminders.png'),
+                      Text(
+                        'No reminders',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                        ),
+                      ),
+                      Text(
+                        'Create a reminder and it will show up here',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            )
+          else
+            SliverGrid(
+              // TODO: fix spacing
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: width / height,
+                crossAxisSpacing: 5,
+                mainAxisSpacing: 8,
+              ),
+              delegate:
+                  SliverChildBuilderDelegate((BuildContext context, int index) {
+                return ReminderCard(
+                  reminders: reminders,
+                  index: index,
+                );
+              }, childCount: reminders.getReminders().length),
             ),
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              return ReminderCard(
-                reminders: reminders,
-                index: index,
-              );
-            }, childCount: reminders.getReminders().length),
-          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
