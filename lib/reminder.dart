@@ -6,7 +6,11 @@ class Reminder {
   DateTime dateDue;
   Color color;
 
-  Reminder({@required this.title, @required this.text, @required this.color});
+  Reminder(
+      {@required this.title,
+      @required this.text,
+      @required this.color,
+      this.dateDue});
 
   String getTitle() {
     return title;
@@ -18,5 +22,9 @@ class Reminder {
 
   Color getColor() {
     return color;
+  }
+
+  DateTime getDate() {
+    return this.dateDue;
   }
 }

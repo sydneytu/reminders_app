@@ -6,51 +6,64 @@ class Reminders {
     Reminder(
         title: 'Coffee',
         text: 'Prepare hot coffee for friends',
-        color: Color(0xFF7ECCFF)),
+        color: Color(0xFF7ECCFF),
+        dateDue: DateTime.now()),
     Reminder(
         title: 'Certification',
         text: 'Call instructor for complete details.',
-        color: Colors.orange),
+        color: Colors.orange,
+        dateDue: DateTime.now()),
     Reminder(
         title: 'Team Meeting',
         text: 'Planning sprint log for next product design update.',
-        color: Colors.pink[200]),
+        color: Colors.pink[200],
+        dateDue: DateTime.now()),
     Reminder(
         title: 'Birthday Party Preparations',
         text: 'Prepare hot coffee for friends',
-        color: Color(0xFF1ECDC4)),
+        color: Color(0xFF1ECDC4),
+        dateDue: DateTime.now()),
     Reminder(
         title: 'Coffee',
         text: 'Prepare hot coffee for friends',
-        color: Color(0xFF1ECDC4)),
+        color: Color(0xFF1ECDC4),
+        dateDue: DateTime.now()),
     Reminder(
-        title: 'Appointment',
-        text: 'Health check up with physician.',
-        color: Colors.red[200]),
+      title: 'Appointment',
+      text: 'Health check up with physician.',
+      color: Colors.red[200],
+      dateDue: DateTime.now(),
+    ),
     Reminder(
         title: 'Certification',
         text: 'Call instructor for complete details.',
-        color: Colors.orange),
+        color: Colors.orange,
+        dateDue: DateTime.now()),
     Reminder(
         title: 'Team Meeting',
         text: 'Planning sprint log for next product design update.',
-        color: Colors.pink[200]),
+        color: Colors.pink[200],
+        dateDue: DateTime.now()),
     Reminder(
         title: 'Birthday Party Preparations',
         text: 'Prepare hot coffee for friends',
-        color: Color(0xFF1ECDC4)),
+        color: Color(0xFF1ECDC4),
+        dateDue: DateTime.now()),
     Reminder(
         title: 'Coffee',
         text: 'Prepare hot coffee for friends',
-        color: Color(0xFF7ECCFF)),
+        color: Color(0xFF7ECCFF),
+        dateDue: DateTime.now()),
     Reminder(
         title: 'Appointment',
         text: 'Health check up with physician.',
-        color: Colors.red[200]),
+        color: Colors.red[200],
+        dateDue: DateTime.now()),
     Reminder(
         title: 'Coffee',
         text: 'Prepare hot coffee for friends',
-        color: Color(0xFF1ECDC4)),
+        color: Color(0xFF1ECDC4),
+        dateDue: DateTime.now()),
   ];
 
   List<Reminder> getReminders() {
