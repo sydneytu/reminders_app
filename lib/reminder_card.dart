@@ -35,19 +35,29 @@ class _ReminderCardState extends State<ReminderCard> {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Stack(
             children: [
-              Text(
-                widget.reminders.getReminder(widget.index).getTitle(),
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.reminders.getReminder(widget.index).getTitle(),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  // TODO: add spacing
+                  Text(
+                    widget.reminders.getReminder(widget.index).getText(),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
               ),
-              Text(
-                widget.reminders.getReminder(widget.index).getText(),
-                style: TextStyle(fontSize: 16),
-              ),
-              Date(
-                dateDue: widget.reminders.getReminder(widget.index).getDate(),
+              Positioned(
+                bottom: 0,
+                child: Date(
+                  dateDue: widget.reminders.getReminder(widget.index).getDate(),
+                ),
               ),
             ],
           ),

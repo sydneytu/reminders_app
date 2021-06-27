@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:reminders/reminder_card.dart';
 import 'package:reminders/reminders.dart';
-import 'package:scroll_app_bar/scroll_app_bar.dart';
 import 'bottom_navbar.dart';
 
 double _crossAxisSpacing = 8, _mainAxisSpacing = 12, _aspectRatio = 2;
