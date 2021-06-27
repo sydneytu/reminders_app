@@ -4,7 +4,7 @@ import 'package:reminders/reminder_card.dart';
 import 'package:reminders/reminders.dart';
 import 'bottom_navbar.dart';
 
-double _crossAxisSpacing = 8, _mainAxisSpacing = 12, _aspectRatio = 2;
+double _crossAxisSpacing = 8, _mainAxisSpacing = 8, _aspectRatio = 1.4;
 int _crossAxisCount = 2;
 
 class HomePage extends StatefulWidget {
@@ -18,16 +18,16 @@ class _HomePageState extends State<HomePage> {
   Reminders reminders = Reminders();
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     double screenWidth = MediaQuery.of(context).size.width;
 
-    var width = (screenWidth - ((_crossAxisCount - 1) * _crossAxisSpacing)) /
+    var width = (screenWidth - ((_crossAxisCount) * _crossAxisSpacing)) /
         _crossAxisCount;
     var height = width / _aspectRatio;
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
+        // TODO: fix bottom row of scrolling
         slivers: [
           SliverAppBar(
             title: Text(
@@ -43,8 +43,10 @@ class _HomePageState extends State<HomePage> {
             expandedHeight: 75,
           ),
           SliverGrid(
+            // TODO: fix spacing
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
+              childAspectRatio: width / height,
               crossAxisSpacing: 5,
               mainAxisSpacing: 8,
             ),

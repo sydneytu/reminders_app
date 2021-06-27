@@ -15,7 +15,8 @@ class Reminders {
         dateDue: DateTime.parse('2021-06-26 03:04:05')),
     Reminder(
         title: 'Team Meeting',
-        text: 'Planning sprint log for next product design update.',
+        text:
+            'Planning sprint log for next product design update. Must have done by morning',
         color: Colors.pink[200],
         dateDue: DateTime.parse('2021-06-28 10:04:05')),
     Reminder(

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:reminders/reminders.dart';
 
@@ -44,7 +46,9 @@ class _ReminderCardState extends State<ReminderCard> {
                     widget.reminders.getReminder(widget.index).getTitle(),
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
-                  // TODO: add spacing
+                  SizedBox(
+                    height: 5,
+                  ),
                   Text(
                     widget.reminders.getReminder(widget.index).getText(),
                     maxLines: 3,
